@@ -193,6 +193,10 @@ public class Main
 					index = Find.indexResearch(researches);
 					if(index<0)
 						break;
+					Find.showProject(researches.get(index));
+					break;
+				case 6:
+					Find.showSystem(collaborators, researches);
 					break;
 				case 7:
 					active = false;

@@ -109,7 +109,39 @@ public class Find
 	}
 	public static void showProject(Research research)
 	{
-		
+		System.out.printf("Proj. de Pesquisa: %s.\nDescricao: %s.\nStatus: %s.\n",
+				research.name, research.description,research.status);
+		for(int i=0; i < research.collaborators.size(); i++)
+			System.out.printf("Colaborador: %s.\n", research.collaborators.get(i));
+		for(int i=0; i < research.publishing.size(); i++)
+			System.out.printf("Publicacao: %s.\nAno: %s.\n"
+					+ "Conferencia: %s.\nAssociacao: %s.\n\n", research.publishing.get(i).name,
+					research.publishing.get(i).year, research.publishing.get(i).conference, research.publishing.get(i).associated);
+			
+		System.out.printf("\n");
+	}
+	public static void showSystem(ArrayList<Collaborator> collaborators, ArrayList<Research> researches)
+	{
+		int p1 = 0, p2 = 0, p3 = 0, max=0;
+		for(int i =0; i < researches.size(); i++)
+		{
+			if (researches.get(i).status.intern() == "Em elaboracao")
+				p1++;
+			else if (researches.get(i).status.intern() == "Em andamento")
+				p2++;
+			else if (researches.get(i).status.intern() == "Concluido")
+				p3++;
+			if (researches.get(i).publishing.size()>max)
+				max = researches.get(i).publishing.size();
+		}
+		System.out.printf("Relatorio de Producao Academica do Laboratotio\n");
+		System.out.printf("=> %s colaboradores\n"
+				+ "=> %s projetos em elaboracao\n"
+				+ "=> %s projetos em andamento\n"
+				+ "=> %s projetos concluidos\n"
+				+ "=> %s projetos no total\n"
+				+ "=> %s numero maximo de produçao academica por tipo de producao\n\n",
+				collaborators.size(), p1, p2, p3, p1+p2+p3, max);
 	}
 	
 }

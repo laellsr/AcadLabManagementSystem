@@ -9,7 +9,7 @@ public class Menu
 	public static void mainMenu()
 	{
 		System.out.printf(
-				"Sistema de Gestão de Produtividade Academica\n\n"
+				"Sistema de Gestao de Produtividade Academica\n\n"
 				+ "[1] Adicionar colaborador ao sistema\n"
 				+ "[2] Novo projeto de pesquisa\n"
 				+ "[3] Editar projeto de pesquisa\n"

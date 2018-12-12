@@ -8,7 +8,7 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		boolean active = true; int mainDecision, index, case3Decision;
+		boolean active = true; int mainDecision, index, indexNewC, case3Decision;
 		String aux; int auxInt;
 		
 		ArrayList<Collaborator> collaborators = new ArrayList<Collaborator>();
@@ -65,7 +65,7 @@ public class Main
 									System.out.printf("Status: Concluido\nNao se pode mais editar.\n\n");
 									break;
 								}
-								if (researches.get(index).objective.intern() == "vazio")
+								if (researches.get(index).status.intern() == "Em andamento")
 								{
 									System.out.printf("Edicoes ja feitas.\n");
 									break;
@@ -88,7 +88,7 @@ public class Main
 									break;								
 								}
 								/* colaborador existe? */
-								int indexNewC = Find.indexCollaborator(collaborators, aux);
+								indexNewC = Find.indexCollaborator(collaborators, aux);
 								if(indexNewC<0)
 								{
 									System.out.printf("Nome invalido:\n\n"); break;
@@ -137,6 +137,37 @@ public class Main
 									System.out.printf("Status: Concluido\nNao se pode mais adicionar.\n\n");
 									break;
 								}
+								System.out.printf("Escolha o orientador:\n");
+								Find.showType4(collaborators);
+								System.out.printf("=> ");
+								indexNewC = Find.indexType4(collaborators);
+								if(indexNewC<0)
+									break;
+								Orientation newOrientation = new Orientation();
+								newOrientation.setOrientation(collaborators.get(indexNewC).getName());
+								researches.get(index).orientation.add(newOrientation);
+								break;
+							case 5:
+								if(researches.get(index).status.intern()=="Em elaboracao")
+								{
+									System.out.printf("Status: Em elaboracao\nEdite os dados do projeto.\n\n");
+									break;
+								}
+								else if(researches.get(index).status.intern()=="Concluido")
+								{
+									System.out.printf("Projeto ja foi concluido.\n\n");
+									break;
+								}
+								if(researches.get(index).publishing.size()>0)
+								{
+									researches.get(index).status = "Concluido";
+									System.out.printf("Status alterado.\n\n");
+								}
+								else
+								{
+									System.out.printf("Sem publicacoes para concluir.\n\n");
+								}
+								
 								break;
 							case 6:
 								case3 = false;
@@ -145,7 +176,25 @@ public class Main
 						}
 					}
 					break;
-				case 6:
+				case 4:
+					Find.showCollaborator(collaborators);
+					System.out.printf("Digite o nome do colaborador:\n=> ");
+					aux = input.nextLine(); aux = aux.toUpperCase();
+					/* colaborador existe? */
+					index = Find.indexCollaborator(collaborators, aux);
+					if(index<0)
+					{
+						System.out.printf("Nome invalido:\n\n"); break;
+					}
+					Find.showPerfil(index, collaborators, researches);
+					break;
+				case 5:
+					Find.showResearch(researches);
+					index = Find.indexResearch(researches);
+					if(index<0)
+						break;
+					break;
+				case 7:
 					active = false;
 					break;
 			}

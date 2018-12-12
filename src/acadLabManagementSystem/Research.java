@@ -1,16 +1,20 @@
 package acadLabManagementSystem;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Research
 {
-	String name, initialDate, finalDate, fundingAgency; 
+	String name, fundingAgency, dateAux; 
+	Date initialDate, finalDate; 
 	String objective = "vazio", description;
 	String status = "Em elaboracao";
 	ArrayList<String> collaborators = new ArrayList<String>();
 	double financedAmount;
-	int publishings=0, researches=0, orientations=0;
+
 	ArrayList<Publishing> publishing = new ArrayList<Publishing>();
 	ArrayList<Orientation> orientation = new ArrayList<Orientation>();
 	
@@ -32,9 +36,21 @@ public class Research
 	public void setDate()
 	{
 		System.out.printf("Digite a data de inicio (DD/MM/AAAA):\n=> ");
-		initialDate = input.nextLine();
+		dateAux = input.nextLine();
+		try {
+			initialDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateAux);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.printf("Digite a data de termino (DD/MM/AAAA):\n=> ");
-		finalDate = input.nextLine();
+		dateAux = input.nextLine();
+		try {
+			finalDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateAux);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void setPerfil()
 	{
@@ -45,6 +61,7 @@ public class Research
 		System.out.printf("Digite o nome da agencia financioadora:\n=> ");
 		fundingAgency = input.nextLine();
 		System.out.printf("Digite o valor do financiamento (Ex.: 999,99):\n=> R$ ");
-		financedAmount = input.nextInt(); input.nextLine();
+		financedAmount = input.nextDouble(); input.nextLine();
 	}
+
 }

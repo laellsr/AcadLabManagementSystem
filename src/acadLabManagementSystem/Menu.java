@@ -15,7 +15,8 @@ public class Menu
 				+ "[3] Editar projeto de pesquisa\n"
 				+ "[4] Consulta por colaborador\n"
 				+ "[5] Consulta por projeto\n"
-				+ "[6] Sair\n\n=> ");
+				+ "[6] Relatorio do Laboratorio\n"
+				+ "[7] Sair\n\n=> ");
 	}
 	public static void researchMenu()
 	{

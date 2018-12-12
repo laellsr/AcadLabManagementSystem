@@ -83,5 +83,33 @@ public class Find
 			System.out.printf("%s: %s.\n", collaborators.get(i).typeName, collaborators.get(i).name);
 		System.out.printf("\n");
 	}
+	public static void showPerfil(int index, ArrayList<Collaborator> collaborators, ArrayList<Research> researches)
+	{
+		System.out.printf("%s: %s.\nE-mail: %s\n", collaborators.get(index).typeName, collaborators.get(index).name, collaborators.get(index).email);
+		
+		for(int j = 0; j < researches.size(); j++)
+			for(int i = 0; i < researches.get(j).collaborators.size(); i++)
+			{
+				if(collaborators.get(index).name.intern() == researches.get(j).collaborators.get(i).intern())
+				{
+					System.out.printf("Proj. de Pesquisa: %s.\nDescricao: %s.\nStatus: %s.\n", researches.get(j).name, researches.get(j).description,researches.get(j).status);
+					for(int k=0; k < researches.get(j).publishing.size(); k++)
+						for(int l=0; l < researches.get(j).publishing.get(k).authors.size(); l++)
+							if(collaborators.get(index).name.intern() == researches.get(j).publishing.get(k).authors.get(l).intern())
+							{
+								System.out.printf("Publicacao: %s.\nAno: %s.\n"
+										+ "Conferencia: %s.\nAssociacao: %s.\n\n", researches.get(j).publishing.get(k).name,
+										researches.get(j).publishing.get(k).year, researches.get(j).publishing.get(k).conference, researches.get(j).publishing.get(k).associated);
+							}
+				}
+				
+			}
+		
+		System.out.printf("\n");
+	}
+	public static void showProject(Research research)
+	{
+		
+	}
 	
 }
